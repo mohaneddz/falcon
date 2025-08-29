@@ -3,15 +3,14 @@
 import * as React from "react"
 import {
   AudioWaveform,
-  BookOpen,
-  Bot,
   Command,
   Frame,
   GalleryVerticalEnd,
   Map,
   PieChart,
-  Settings2,
-  SquareTerminal,
+  User,
+  BadgeQuestionMark,
+  MapPin,
 } from "lucide-react"
 
 import { NavMain } from "@/components/layout/nav-main"
@@ -53,87 +52,46 @@ const data = {
   ],
   navMain: [
     {
-      title: "Playground",
+      title: "Requests",
       url: "#",
-      icon: SquareTerminal,
+      icon: BadgeQuestionMark,
       isActive: true,
       items: [
         {
-          title: "History",
-          url: "#",
-        },
-        {
-          title: "Starred",
-          url: "#",
-        },
-        {
-          title: "Settings",
-          url: "#",
+          title: "Verifications",
+          url: "/dashboard/verifications",
         },
       ],
     },
     {
-      title: "Models",
+      title: "Users",
       url: "#",
-      icon: Bot,
+      icon: User,
+      isActive: true,
       items: [
         {
-          title: "Genesis",
-          url: "#",
+          title: "Registered",
+          url: "/dashboard/registered_users",
         },
         {
-          title: "Explorer",
-          url: "#",
-        },
-        {
-          title: "Quantum",
-          url: "#",
+          title: "Verified",
+          url: "/dashboard/verified_users",
         },
       ],
     },
     {
-      title: "Documentation",
+      title: "Locations",
       url: "#",
-      icon: BookOpen,
+      icon: MapPin,
+      isActive: true,
       items: [
         {
-          title: "Introduction",
-          url: "#",
+          title: "Markers",
+          url: "/dashboard/markers",
         },
         {
-          title: "Get Started",
-          url: "#",
-        },
-        {
-          title: "Tutorials",
-          url: "#",
-        },
-        {
-          title: "Changelog",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Settings",
-      url: "#",
-      icon: Settings2,
-      items: [
-        {
-          title: "General",
-          url: "#",
-        },
-        {
-          title: "Team",
-          url: "#",
-        },
-        {
-          title: "Billing",
-          url: "#",
-        },
-        {
-          title: "Limits",
-          url: "#",
+          title: "SOS",
+          url: "/dashboard/sos",
         },
       ],
     },
