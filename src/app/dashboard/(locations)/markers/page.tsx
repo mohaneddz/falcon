@@ -1,9 +1,9 @@
 import { columns } from "@/components/tables/c_markers" 
 import { DataTable } from "@/components/tables/data-table"
-import { dummyMarkersData } from "@/data/markers" 
+import { dummyData } from "@/data/markers" 
 
 export default async function page() {
-  const data = dummyMarkersData;
+  const data = dummyData;
 
   return (
     <section className="container mx-auto">

@@ -1,6 +1,6 @@
-import { columns } from "@/components/tables/c_verification" 
+import { columns } from "@/components/tables/c_sos" 
 import { DataTable } from "@/components/tables/data-table"
-import { dummyData } from "@/data/verification" 
+import { dummyData } from "@/data/sos" 
 
 export default async function page() {
   const data = dummyData;

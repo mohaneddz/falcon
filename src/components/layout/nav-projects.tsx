@@ -25,10 +25,10 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar"
 
-export function NavProjects({
-  projects,
+export function NavTools({
+  tools,
 }: {
-  projects: {
+  tools: {
     name: string
     url: string
     icon: LucideIcon
@@ -38,9 +38,11 @@ export function NavProjects({
 
   return (
     <SidebarGroup className="group-data-[collapsible=icon]:hidden">
-      <SidebarGroupLabel>Projects</SidebarGroupLabel>
+      <SidebarGroupLabel>Tools</SidebarGroupLabel>
+
       <SidebarMenu>
-        {projects.map((item) => (
+        
+        {tools.map((item) => (
           <SidebarMenuItem key={item.name}>
             <SidebarMenuButton asChild>
               <a href={item.url}>
@@ -77,13 +79,16 @@ export function NavProjects({
             </DropdownMenu>
           </SidebarMenuItem>
         ))}
+
         <SidebarMenuItem>
           <SidebarMenuButton className="text-sidebar-foreground/70">
             <MoreHorizontal className="text-sidebar-foreground/70" />
             <span>More</span>
           </SidebarMenuButton>
         </SidebarMenuItem>
+
       </SidebarMenu>
+
     </SidebarGroup>
   )
 }

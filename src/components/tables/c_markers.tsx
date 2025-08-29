@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { Badge } from "@/components/ui/badge"
 
-import type { Marker } from "@/types/marker"
+import type { Marker } from "@/types/d_marker"
 
 type BadgeVariant = "default" | "secondary" | "destructive" | "outline" | null | undefined;
 
@@ -68,8 +68,7 @@ export const columns: ColumnDef<Marker>[] = [
                 </Button>
             )
         },
-        // Fix 1: Cast row.getValue("lat") to number
-        cell: ({ row }) => <div className="text-right">{(row.getValue("lat") as number).toFixed(4)}</div>,
+        cell: ({ row }) => <div className="w-16 text-right">{(row.getValue("lat") as number).toFixed(4)}</div>,
     },
     {
         accessorKey: "long",
@@ -84,8 +83,7 @@ export const columns: ColumnDef<Marker>[] = [
                 </Button>
             )
         },
-        // Fix 2: Cast row.getValue("long") to number
-        cell: ({ row }) => <div className="text-right">{(row.getValue("long") as number).toFixed(4)}</div>,
+        cell: ({ row }) => <div className="w-16 text-right">{(row.getValue("long") as number).toFixed(4)}</div>,
     },
     {
         accessorKey: "type",
@@ -101,9 +99,8 @@ export const columns: ColumnDef<Marker>[] = [
             )
         },
         cell: ({ row }) => {
-            // Fix 3 & 4: Get 'type' from row.getValue and determine 'variant'
             const type: string = row.getValue("type");
-            const variant = getBadgeVariant(type); // Use the helper function
+            const variant = getBadgeVariant(type); 
             return <Badge className="center mx-auto" variant={variant}>{type}</Badge>;
         },
     },

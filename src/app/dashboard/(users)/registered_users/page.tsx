@@ -1,9 +1,9 @@
 import { columns } from "@/components/tables/c_registered" 
 import { DataTable } from "@/components/tables/data-table"
-import { dummyRegisteredUsers } from "@/data/registered" 
+import { dummyData } from "@/data/registered" 
 
 export default async function page() {
-  const data = dummyRegisteredUsers;
+  const data = dummyData;
 
   return (
     <div className="container mx-auto">

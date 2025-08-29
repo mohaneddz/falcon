@@ -1,4 +1,4 @@
-import type { Request } from "@/types/requests";
+import type { Request } from "@/types/d_requests";
 
 export const dummyData: Request[] = [
 {

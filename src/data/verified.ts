@@ -1,6 +1,6 @@
-import { VerifiedUser } from "@/types/verified"; 
+import { VerifiedUser } from "@/types/d_verified"; 
 
-export const dummyUserData: VerifiedUser[] = [
+export const dummyData: VerifiedUser[] = [
   {
     id: "user-001",
     name: "Alice Smith",

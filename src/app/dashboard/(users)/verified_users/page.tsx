@@ -1,9 +1,9 @@
 import { columns } from "@/components/tables/c_verified" 
 import { DataTable } from "@/components/tables/data-table"
-import { dummyUserData } from "@/data/verified" 
+import { dummyData } from "@/data/verified" 
 
 export default async function page() {
-  const data = dummyUserData;
+  const data = dummyData;
 
   return (
     <div className="container mx-auto">

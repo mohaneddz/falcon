@@ -1,6 +1,6 @@
-import type { RegisteredUser } from "@/types/registered";
+import type { RegisteredUser } from "@/types/d_registered";
 
-export const dummyRegisteredUsers: RegisteredUser[] = [
+export const dummyData: RegisteredUser[] = [
   {
     id: "user_001",
     name: "Alice Smith",

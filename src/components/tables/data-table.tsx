@@ -51,7 +51,7 @@ export function DataTable<TData, TValue>({ columns, data }: DataTableProps<TData
   return (
     <div className="overflow-hidden rounded-md border overflow-x-auto max-h-[91vh] overflow-y-auto">
 
-      <div className="flex items-center justify-between w-full p-4">
+      <div className="flex items-center justify-between w-full p-4 pr-0">
 
         <div className="w-full items-center flex gap-4">
           {/* selection state */}
@@ -63,7 +63,7 @@ export function DataTable<TData, TValue>({ columns, data }: DataTableProps<TData
           <Input placeholder="Filter rows..." value={table.getState().globalFilter ?? ''} onChange={(event) => table.setGlobalFilter(String(event.target.value))} className="max-w-lg" />
         </div>
 
-        <div className="center gap-2">
+        <div className="center gap-2 mx-4">
           {/* quick actions */}
           <DropdownMenu>
             <DropdownMenuTrigger asChild>

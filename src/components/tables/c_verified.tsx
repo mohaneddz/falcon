@@ -4,7 +4,7 @@ import { ColumnDef } from "@tanstack/react-table"
 import { MoreHorizontal } from "lucide-react"
 import { ArrowUpDown } from "lucide-react"
 import { Checkbox } from "@/components/ui/checkbox"
-import type { VerifiedUser } from "@/types/verified"
+import type { VerifiedUser } from "@/types/d_verified"
 
 import { Button } from "@/components/ui/button"
 import {

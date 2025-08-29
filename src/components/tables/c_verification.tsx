@@ -5,7 +5,7 @@ import { MoreHorizontal } from "lucide-react"
 import { ArrowUpDown } from "lucide-react"
 import { Checkbox } from "@/components/ui/checkbox"
 
-import type { Request } from "@/types/requests"
+import type { Request } from "@/types/d_requests"
 
 import { Button } from "@/components/ui/button"
 import {
