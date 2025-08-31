@@ -15,15 +15,11 @@ import loadMarkers from "@/utils/loadMarkers";
 
 type LatLngExpression = L.LatLngExpression;
 
-// It's good practice to keep this fix for default icon issues
 delete (L.Icon.Default.prototype as any)._getIconUrl;
 L.Icon.Default.mergeOptions({
-  iconRetinaUrl:
-    "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png",
-  iconUrl:
-    "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png",
-  shadowUrl:
-    "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png",
+  iconRetinaUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png",
+  iconUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png",
+  shadowUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png",
 });
 
 export interface Marker {
@@ -82,8 +78,9 @@ function MapInitializer({ mapRef }: MapInitializerProps) {
   return null;
 }
 
-export default function MapComponent(): JSX.Element {
-  const defaultPosition: LatLngExpression = [31.5017, 34.4668];
+export default function MapComponent({ lat, lng }: { lat: number; lng: number }): JSX.Element {
+
+  const defaultPosition: LatLngExpression = [lat ? lat : 31.5017, lng ? lng : 34.4668];
 
   const [markers, setMarkers] = useState<MapMarker[]>([]);
   const [mapCenter, setMapCenter] =
@@ -92,7 +89,7 @@ export default function MapComponent(): JSX.Element {
 
   const mapRef = useRef<L.Map | null>(null);
 
-  const handleMapClick = (lat: number, lng: number) => {};
+  const handleMapClick = (lat: number, lng: number) => { };
 
   const removeMarker = (id: number) => {
     setMarkers((p) => p.filter((m) => m.id !== id));
@@ -123,13 +120,13 @@ export default function MapComponent(): JSX.Element {
   return (
     <div className="w-full">
       <div
-        className="relative rounded-lg overflow-hidden shadow-lg border border-gray-300"
+        className="relative overflow-hidden shadow-lg border border-gray-300"
         style={{ height: "calc(100vh - 70px)", minHeight: "300px" }}
       >
         <MapContainer
           center={mapCenter}
           zoom={zoom}
-          className="w-full h-full"
+          className="w-full h-full z-0"
           style={{ width: "100%", height: "100%" }}
         >
           <TileLayer

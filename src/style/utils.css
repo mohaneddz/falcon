@@ -8,3 +8,7 @@
 .center{
     @apply flex items-center justify-center;
 }
+
+.screen{
+    @apply h-screen w-screen;
+}

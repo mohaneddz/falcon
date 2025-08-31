@@ -6,8 +6,7 @@ export default async function page() {
   const data = dummyData;
 
   return (
-    <section className="mx-auto full">
-      <h1 className="text-2xl font-bold mb-4">Verifications Management</h1>
+    <section className="mx-auto full p-4">
       <DataTable columns={columns} data={data} />
     </section>
   );

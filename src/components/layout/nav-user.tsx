@@ -8,6 +8,7 @@ import {
   LogOut,
   Cog,
 } from "lucide-react"
+import Link from "next/link"
 
 import {
   Avatar,
@@ -81,17 +82,17 @@ export function NavUser({
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
-              <DropdownMenuItem>
-                <Cog />
-                Settings
+              <DropdownMenuItem asChild>
+                <Link href="/dashboard/settings" className="cursor-pointer">
+                  <Cog />
+                  Settings
+                </Link>
               </DropdownMenuItem>
-              <DropdownMenuItem>
-                <BadgeCheck />
-                Account
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <Bell />
-                Notifications
+              <DropdownMenuItem asChild>
+                <Link href="/dashboard/user" className="cursor-pointer">
+                  <BadgeCheck />
+                  Account
+                </Link>
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />

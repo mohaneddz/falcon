@@ -1,13 +1,9 @@
 "use client"
 
+import Image from "next/image"
 import * as React from "react"
 import {
-  AudioWaveform,
-  Command,
-  Frame,
-  GalleryVerticalEnd,
   Map,
-  PieChart,
   User,
   BadgeQuestionMark,
   MapPin,
@@ -16,7 +12,6 @@ import {
 import { NavMain } from "@/components/layout/nav-main"
 import { NavTools } from "@/components/layout/nav-projects"
 import { NavUser } from "@/components/layout/nav-user"
-import { TeamSwitcher } from "@/components/layout/team-switcher"
 
 import {
   Sidebar,
@@ -24,6 +19,7 @@ import {
   SidebarFooter,
   SidebarHeader,
   SidebarRail,
+  useSidebar,
 } from "@/components/ui/sidebar"
 
 // This is sample data.
@@ -33,23 +29,6 @@ const data = {
     email: "lives@gmail.com",
     avatar: "/imgs/logo.png",
   },
-  teams: [
-    {
-      name: "Lives Inc",
-      logo: GalleryVerticalEnd,
-      plan: "Moderators",
-    },
-    {
-      name: "Lives Corp.",
-      logo: AudioWaveform,
-      plan: "Startup",
-    },
-    {
-      name: "Evil Corp.",
-      logo: Command,
-      plan: "Free",
-    },
-  ],
   navMain: [
     {
       title: "Requests",
@@ -106,10 +85,17 @@ const data = {
 }
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  const { state } = useSidebar();
+
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
-        <TeamSwitcher teams={data.teams} />
+        <div className="flex items-center gap-4">
+          <Image src="/imgs/bird.png" alt="Logo" width={64} height={64} />
+          {state === "expanded" && (
+            <Image src="/imgs/title.png" alt="Logo" width={128} height={128} className="max-w-[128px]" />
+          )}
+        </div>
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
