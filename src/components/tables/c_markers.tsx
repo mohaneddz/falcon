@@ -115,7 +115,7 @@ export const columns: ColumnDef<Marker>[] = [
         cell: ({ row }) => {
             const imageUrl: string | undefined = row.getValue("image");
             return imageUrl ? (
-                <a href={imageUrl} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline text-center">
+                <a href={imageUrl} target="_blank" rel="noopener noreferrer" className="text-emerald-600 hover:underline text-center">
                     View Image
                 </a>
             ) : (

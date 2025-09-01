@@ -89,7 +89,7 @@ export default function Page() {
   };
 
   return (
-    <main className="full flex flex-col space-y-6">
+    <main className="full flex flex-col space-y-6 p-4">
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-semibold tracking-tight">Settings</h1>

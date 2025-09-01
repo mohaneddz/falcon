@@ -1,15 +1,22 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
-import { dummyData } from '@/data/markers';
-import { Mail, Calendar, ShieldCheck, ShieldAlert, Map as MapIcon, BadgeQuestionMark, MapPin } from "lucide-react";
+
+import { Mail, Calendar, ShieldCheck, ShieldAlert } from "lucide-react";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+import UserMap from "@/components/core/UserMap";
 
 export default function page() {
+
   const user = {
     name: "MANAA Mohaned",
     email: "lives@gmail.com",
     avatar: "/imgs/user.JPG",
     joinedAt: "2024-01-15T00:00:00.000Z",
     accountStatus: "Active" as const,
+    reportCount: 0,
+    verificationDocument: "/imgs/user.JPG",
     verificationStatus: "Verified" as const,
   };
 
@@ -59,11 +66,11 @@ export default function page() {
           </div>
 
           <div className="flex items-center gap-2 mt-8">
-            <span className={badge(isActive)}>
+            <span className={badge(isActive) + " text-white bg-emerald-500"}>
               {isActive ? <ShieldCheck className="h-3.5 w-3.5" /> : <ShieldAlert className="h-3.5 w-3.5" />}
               Account: {user.accountStatus}
             </span>
-            <span className={badge(isVerified, "sky")}>
+            <span className={badge(isVerified, "sky") + " text-white bg-emerald-500"}>
               {isVerified ? <ShieldCheck className="h-3.5 w-3.5" /> : <ShieldAlert className="h-3.5 w-3.5" />}
               Verification: {user.verificationStatus}
             </span>
@@ -92,68 +99,34 @@ export default function page() {
               <span className="font-medium">{joinedFmt}</span>
             </div>
             <div className="flex items-center justify-between">
-              <span className="text-gray-500">Account Status</span>
-              <span className={badge(isActive)}>{user.accountStatus}</span>
+              <span className="text-gray-500">Number of Reports</span>
+              <span className="font-medium">{user.reportCount}</span>
             </div>
             <div className="flex items-center justify-between">
-              <span className="text-gray-500">Verification</span>
-              <span className={badge(isVerified, "sky")}>{user.verificationStatus}</span>
+              <span className="text-gray-500">Verification Document</span>
+              <Link href={user.verificationDocument} className="font-medium text-emerald-700 underline">{user.verificationDocument}</Link>
             </div>
           </div>
         </div>
 
         {/* Right */}
         <div className="rounded-xl border bg-white/60 p-5 shadow-sm">
-          <h2 className="mb-4 text-sm font-semibold text-gray-500">Quick Actions</h2>
-          <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
-            <Link
-              href="/dashboard/map"
-              className="group flex items-center gap-2 rounded-lg border p-3 transition hover:border-sky-400 hover:bg-sky-50"
-            >
-              <MapIcon className="h-4 w-4 text-sky-600 group-hover:scale-110 transition" />
-              <span className="text-sm font-medium">Open Map</span>
-            </Link>
-            <Link
-              href="/dashboard/verifications"
-              className="group flex items-center gap-2 rounded-lg border p-3 transition hover:border-indigo-400 hover:bg-indigo-50"
-            >
-              <BadgeQuestionMark className="h-4 w-4 text-indigo-600 group-hover:scale-110 transition" />
-              <span className="text-sm font-medium">Verifications</span>
-            </Link>
-            <Link
-              href="/dashboard/markers"
-              className="group flex items-center gap-2 rounded-lg border p-3 transition hover:border-emerald-400 hover:bg-emerald-50"
-            >
-              <MapPin className="h-4 w-4 text-emerald-600 group-hover:scale-110 transition" />
-              <span className="text-sm font-medium">Markers</span>
-            </Link>
-          </div>
-          <h2 className="my-4 text-sm font-semibold text-gray-500">Marked Locations</h2>
-          <ul className="mt-6 space-y-2 text-sm text-gray-700 bg-gray-200 p-4 rounded-lg ">
-            {dummyData.slice(0, 5).map((marker) => (
-                <li key={marker.id} className="flex items-start gap-2">
-                <span
-                  className={`inline-block h-2 w-2 rounded-full mt-1 ${
-                  marker.type === "food"
-                    ? "bg-emerald-500"
-                    : marker.type === "water"
-                    ? "bg-cyan-500"
-                    : marker.type === "danger"
-                    ? "bg-red-500"
-                    : marker.type === "aid"
-                    ? "bg-rose-700"
-                    : "bg-gray-500"
-                  }`}
-                />
-                <div>
-                  <p className="font-medium text-gray-800">{marker.description}</p>
-                  <p className="text-xs text-gray-600">
-                  Type: {marker.type} | Reports: {marker.reports}
-                  </p>
-                </div>
-                </li>
-            ))}
-          </ul>
+          <Tabs defaultValue="markers" className="full">
+
+            <TabsList className="grid w-full grid-cols-2">
+              <TabsTrigger value="markers">Markers</TabsTrigger>
+              <TabsTrigger value="sos">SOS</TabsTrigger>
+            </TabsList>
+
+            <TabsContent value="markers">
+              <UserMap map="markers" />
+            </TabsContent>
+
+            <TabsContent value="sos">
+              <UserMap map="sos" />
+            </TabsContent>
+
+          </Tabs>
         </div>
 
       </section>

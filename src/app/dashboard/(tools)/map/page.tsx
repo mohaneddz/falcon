@@ -1,10 +1,12 @@
 "use client";
 
 import dynamic from 'next/dynamic';
+
 import { useMemo } from 'react';
+import { dummyData } from '@/data/markers';
 import { useSearchParams } from 'next/navigation';
 
-const MapComponentWithNoSSR = dynamic(() => import('@/components/core/map'), { 
+const MapComponentWithNoSSR = dynamic(() => import('@/components/core/map'), {
   ssr: false
 });
 
@@ -18,15 +20,16 @@ export default function Page() {
   const lng = lngParam ? parseFloat(lngParam) : undefined;
 
   const MemoizedMapComponent = useMemo(() => {
-    if (lat !== undefined && lng !== undefined) {
-      return <MapComponentWithNoSSR lat={lat} lng={lng} />;
-    }
-    return <p>Invalid or missing coordinates</p>;
+    return <MapComponentWithNoSSR lat={lat} lng={lng} pins={dummyData}/>;
   }, [lat, lng]);
 
   return (
     <section className="z-10">
-      {MemoizedMapComponent}
+      <div className="w-full">
+        <div className="relative overflow-hidden shadow-lg border border-gray-300" style={{ height: "calc(100vh - 70px)", minHeight: "300px" }}>
+          {MemoizedMapComponent}
+        </div>
+      </div>
     </section>
   );
 }

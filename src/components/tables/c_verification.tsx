@@ -141,7 +141,7 @@ export const columns: ColumnDef<Request>[] = [
       const documentName: string = row.getValue("document");
       // Render a link or just the document name
       return (
-        <a href={`/documents/${documentName}`} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+        <a href={`/documents/${documentName}`} target="_blank" rel="noopener noreferrer" className="text-emerald-600 hover:underline">
           {documentName || "N/A"}
         </a>
       );

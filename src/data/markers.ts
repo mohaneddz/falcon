@@ -1,6 +1,6 @@
-import type { Marker } from '@/types/d_marker';
+import type { MarkerType } from '@/types/d_marker';
 
-export const dummyData: Marker[] = [
+export const dummyData: MarkerType[] = [
 	{
 		id: '1',
 		lat: 31.5017,

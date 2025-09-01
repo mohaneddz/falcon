@@ -1,12 +1,12 @@
 "use client";
 
-import { dummyData } from "@/data/markers";
 import L from "leaflet";
+import type { MarkerType } from "@/types/d_marker";
 
-export default async function loadMarkers(mapRef: L.Map | null) {
+export default async function loadMarkers(mapRef: L.Map | null, markers: MarkerType[] = []) {
 
   if (mapRef) {
-    dummyData.forEach((marker) => {
+    markers.forEach((marker) => {
       const { id, lat, long, description, type, user_id, last_updated, reports } = marker;
       const position = [lat, long] as [number, number];
 
