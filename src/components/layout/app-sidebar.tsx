@@ -3,14 +3,14 @@
 import Image from "next/image"
 import * as React from "react"
 import {
-  Map,
-  User,
-  BadgeQuestionMark,
+  Users,
+  UserCheck,
   MapPin,
+  AlertTriangle,
+  Home,
 } from "lucide-react"
 
 import { NavMain } from "@/components/layout/nav-main"
-import { NavTools } from "@/components/layout/nav-projects"
 import { NavUser } from "@/components/layout/nav-user"
 
 import {
@@ -22,64 +22,48 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar"
 
-// This is sample data.
+// Updated navigation data for admin dashboard
 const data = {
   user: {
-    name: "lives",
-    email: "lives@gmail.com",
+    name: "Admin",
+    email: "admin@4pal.com",
     avatar: "/imgs/user.jpg",
   },
   navMain: [
     {
-      title: "Requests",
-      url: "#",
-      icon: BadgeQuestionMark,
+      title: "Dashboard",
+      url: "/dashboard",
+      icon: Home,
       isActive: true,
-      items: [
-        {
-          title: "Verifications",
-          url: "/dashboard/verifications",
-        },
-      ],
+      items: [],
+    },
+    {
+      title: "Contributors",
+      url: "/dashboard/contributors",
+      icon: UserCheck,
+      isActive: true,
+      items: [],
     },
     {
       title: "Users",
-      url: "#",
-      icon: User,
+      url: "/dashboard/users",
+      icon: Users,
       isActive: true,
-      items: [
-        {
-          title: "Registered",
-          url: "/dashboard/registered_users",
-        },
-        {
-          title: "Verified",
-          url: "/dashboard/verified_users",
-        },
-      ],
+      items: [],
     },
     {
       title: "Locations",
-      url: "#",
+      url: "/dashboard/locations",
       icon: MapPin,
       isActive: true,
-      items: [
-        {
-          title: "Markers",
-          url: "/dashboard/markers",
-        },
-        {
-          title: "SOS",
-          url: "/dashboard/sos",
-        },
-      ],
+      items: [],
     },
-  ],
-  tools: [
     {
-      name: "Map",
-      url: "/dashboard/map",
-      icon: Map,
+      title: "Emergencies",
+      url: "/dashboard/emergencies",
+      icon: AlertTriangle,
+      isActive: true,
+      items: [],
     },
   ],
 }
@@ -99,7 +83,6 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
-        <NavTools tools={data.tools} />
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={data.user} />

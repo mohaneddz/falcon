@@ -31,9 +31,10 @@ import {
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
   data: TData[]
+  meta?: any
 }
 
-export function DataTable<TData, TValue>({ columns, data }: DataTableProps<TData, TValue>) {
+export function DataTable<TData, TValue>({ columns, data, meta }: DataTableProps<TData, TValue>) {
 
   const [sorting, setSorting] = React.useState<SortingState>([])
   const [rowSelection, setRowSelection] = React.useState({})
@@ -46,6 +47,7 @@ export function DataTable<TData, TValue>({ columns, data }: DataTableProps<TData
     onSortingChange: setSorting, onColumnFiltersChange: setColumnFilters, onRowSelectionChange: setRowSelection, onColumnVisibilityChange: setColumnVisibility,
     getSortedRowModel: getSortedRowModel(), getFilteredRowModel: getFilteredRowModel(), globalFilterFn: 'includesString',
     state: { sorting, columnFilters, rowSelection, columnVisibility, },
+    meta,
   })
 
   return (

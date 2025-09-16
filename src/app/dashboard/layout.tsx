@@ -3,8 +3,9 @@
 import { AppSidebar } from "@/components/layout/app-sidebar"
 import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
 import { usePathname } from "next/navigation"
+import { withAuth } from "@/contexts/AuthContext"
 
-export default function Page({ children }: React.PropsWithChildren) {
+function DashboardLayout({ children }: React.PropsWithChildren) {
   const pathname = usePathname()
 
   const segments = pathname?.split("/").filter(Boolean) || []
@@ -29,3 +30,5 @@ export default function Page({ children }: React.PropsWithChildren) {
     </div>
   )
 }
+
+export default withAuth(DashboardLayout)

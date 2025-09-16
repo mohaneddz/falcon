@@ -1,14 +1,10 @@
 "use client"
 
 import {
-  BadgeCheck,
-  Bell,
   ChevronsUpDown,
-  CreditCard,
   LogOut,
-  Cog,
 } from "lucide-react"
-import Link from "next/link"
+import { useAuth } from "@/contexts/AuthContext"
 
 import {
   Avatar,
@@ -41,6 +37,14 @@ export function NavUser({
   }
 }) {
   const { isMobile } = useSidebar()
+  const { logout, admin } = useAuth()
+  
+  // Use admin data if available, fallback to prop user data
+  const displayUser = admin ? {
+    name: admin.name || 'Admin',
+    email: admin.email || 'admin@4pal.com',
+    avatar: user.avatar
+  } : user
 
   return (
     <SidebarMenu>
@@ -52,12 +56,14 @@ export function NavUser({
               className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
             >
               <Avatar className="h-8 w-8 rounded-full">
-                <AvatarImage src={user.avatar} alt={user.name} />
-                <AvatarFallback className="rounded-full">CN</AvatarFallback>
+                <AvatarImage src={displayUser.avatar} alt={displayUser.name} />
+                <AvatarFallback className="rounded-full">
+                  {displayUser.name.split(' ').map(n => n[0]).join('').toUpperCase()}
+                </AvatarFallback>
               </Avatar>
               <div className="grid flex-1 text-left text-sm leading-tight">
-                <span className="truncate font-medium">{user.name}</span>
-                <span className="truncate text-xs">{user.email}</span>
+                <span className="truncate font-medium">{displayUser.name}</span>
+                <span className="truncate text-xs">{displayUser.email}</span>
               </div>
               <ChevronsUpDown className="ml-auto size-4" />
             </SidebarMenuButton>
@@ -71,32 +77,19 @@ export function NavUser({
             <DropdownMenuLabel className="p-0 font-normal">
               <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
                 <Avatar className="h-8 w-8 rounded-full">
-                  <AvatarImage src={user.avatar} alt={user.name} />
-                  <AvatarFallback className="rounded-full">CN</AvatarFallback>
+                  <AvatarImage src={displayUser.avatar} alt={displayUser.name} />
+                  <AvatarFallback className="rounded-full">
+                    {displayUser.name.split(' ').map(n => n[0]).join('').toUpperCase()}
+                  </AvatarFallback>
                 </Avatar>
                 <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-medium">{user.name}</span>
-                  <span className="truncate text-xs">{user.email}</span>
+                  <span className="truncate font-medium">{displayUser.name}</span>
+                  <span className="truncate text-xs">{displayUser.email}</span>
                 </div>
               </div>
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <DropdownMenuGroup>
-              <DropdownMenuItem asChild>
-                <Link href="/dashboard/settings" className="cursor-pointer">
-                  <Cog />
-                  Settings
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <Link href="/dashboard/user" className="cursor-pointer">
-                  <BadgeCheck />
-                  Account
-                </Link>
-              </DropdownMenuItem>
-            </DropdownMenuGroup>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem>
+            <DropdownMenuItem onClick={() => logout()} className="cursor-pointer">
               <LogOut />
               Log out
             </DropdownMenuItem>
