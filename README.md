@@ -1,3 +1,5 @@
+![FALCON cover](screenshots/cover.avif)
+
 # falcon
 
 Admin dashboard for an emergency-response / aid-coordination platform, built during a hackathon (Code4Pal). It gives admins a single place to see users, verified contributors, emergency (SOS) reports, and aid locations on a map.
